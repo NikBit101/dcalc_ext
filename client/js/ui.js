@@ -95,7 +95,7 @@ function init() {
 async function toggleTheme() {
   const toggler = document.querySelector('#theme-switch'),
         root = document.documentElement;
-  let currentTheme = localStorage.getItem('theme') || 'light';
+  let currentTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 
   if (currentTheme === 'light') {
     toggler.removeAttribute('checked');
