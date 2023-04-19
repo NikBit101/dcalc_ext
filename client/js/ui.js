@@ -94,8 +94,8 @@ function init() {
 
 async function toggleTheme() {
   const toggler = document.querySelector('#theme-switch'),
-        root = document.documentElement,
-        currentTheme = localStorage.getItem('theme') || 'dark';
+        root = document.documentElement;
+  let currentTheme = localStorage.getItem('theme') || 'light';
 
   if (currentTheme === 'light') {
     toggler.removeAttribute('checked');
@@ -108,18 +108,20 @@ async function toggleTheme() {
   toggler.addEventListener('change', handleToggle, false);
 
   function handleToggle(e) {
-    if (this.checked) {
-      root.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-      console.log('Theme has been changed to: dark');
-    } else {
+    if (currentTheme === 'dark') {
       root.setAttribute('data-theme', 'light');
       localStorage.setItem('theme', 'light');
-      console.log('Theme has been changed to: light');
+      currentTheme = 'light';
+    } else {
+      root.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+      currentTheme = 'dark';
     }
 
     console.log(`Current theme is: ${localStorage.getItem('theme')}`);
   }
+
+  handleToggle();
 }
 
 async function loadModules() {
