@@ -105,9 +105,7 @@ async function toggleTheme() {
 
   root.setAttribute('data-theme', currentTheme);
 
-  toggler.addEventListener('change', handleToggle, false);
-
-  function handleToggle(e) {
+  toggler.addEventListener('click', (e) => {
     if (currentTheme === 'dark') {
       root.setAttribute('data-theme', 'light');
       localStorage.setItem('theme', 'light');
@@ -117,9 +115,9 @@ async function toggleTheme() {
       localStorage.setItem('theme', 'dark');
       currentTheme = 'dark';
     }
-
+  
     console.log(`Current theme is: ${localStorage.getItem('theme')}`);
-  }
+  }, false);
 
   handleToggle();
 }
