@@ -289,12 +289,19 @@ input::-webkit-inner-spin-button {
   flex-wrap: wrap;
   margin-bottom: 1em;
   width: 100%;
+  margin-top: 1em;
 }
 
 #filterSection input[type="checkbox"] {
   display: block;
   margin: 0 auto;
   transform: scale(2);
+  margin-top: 25px;
+}
+
+#predictl6{
+  display: block;
+  margin: 0 auto;
 }
 
 /*********************************************
@@ -337,7 +344,8 @@ adapted from: https://uiverse.io/e-coders/nervous-chipmunk-49
 }
 
 #ClearButton,
-#copy {
+#copy,
+#predictl6 {
   background-color: #FAFBFC;
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 6px;
@@ -352,24 +360,28 @@ adapted from: https://uiverse.io/e-coders/nervous-chipmunk-49
   vertical-align: middle;
  }
  
- #ClearButton:hover {
+ #ClearButton:hover,
+ #predictl6:hover {
   background-color: #F3F4F6;
   transition-duration: 0.1s;
  }
  
- #ClearButton:disabled {
+ #ClearButton:disabled,
+ #predictl6:disabled {
   background-color: #FAFBFC;
   border-color: rgba(27, 31, 35, 0.15);
   color: #959DA5;
   cursor: default;
  }
  
- #ClearButton:active {
+ #ClearButton:active,
+ #predictl6:active {
   background-color: #EDEFF2;
   box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
  }
  
- #ClearButton:focus {
+ #ClearButton:focus,
+ #predictl6:focus {
   outline: 1px transparent;
  }
 
