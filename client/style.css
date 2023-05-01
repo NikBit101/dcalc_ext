@@ -5,8 +5,14 @@
 :root {
   --numsize: 120%;
   --bg: #FFF;
+  --bgdark: #2d3848;
+  --header:  #e1e1e1;
   --fg: #000;
-  --hibg: #0076A6;
+
+  /*
+  Old color for rules and that
+  --hibg: #1f9dcf;*/
+  --hibg: #0687bb;
   --highlight: #99CCFF;
   --border: #888;
   --border-disabled: #aaa;
@@ -16,12 +22,11 @@
   --wide-direction: column;
   --wide-align: center;
 }
-
 /*********************************************
  * WIDE LAYOUT
  *********************************************/
 
- @media screen and (min-width: 70rem) {
+@media screen and (min-width: 70rem) {
   :root {
     --header-align: center;
     --wide-direction: row;
@@ -29,39 +34,115 @@
   }
 }
 
-/*********************************************
- * DARK MODE
- *********************************************/
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #333;
-    --fg: #AAA;
-    --hibg: #30A6D6;
-    --highlight: #000;
-    --border: #888;
-    --border-disabled: #444;
-    --link: #996;
-    --corner: #996;
-  }
-
-  a,
-  a:visited,
-  a:active {
-    color: var(--link);
-  }
-
-}
 
 /*********************************************
  * GENERAL LAYOUT
  *********************************************/
+html{
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
-html {
+body {
+  margin: 0 auto;
+  max-width: 100%;
   font-family: "Calibri", sans-serif;
   background: var(--bg);
   color: var(--fg);
+  transition: background-color 0.5s ease;
 }
+
+/* Body when the user uses dark Mode.   */
+.dark-mode {
+  background-color: var(--bgdark);
+  color: white;
+  transition: background-color 0.5s ease;
+}
+
+ 
+header  {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--header);
+  padding: 15px;
+}
+
+h1{
+  display:inline;
+  position: relatives;
+  width: 115%;
+  color: var(--bgdark);
+}
+
+nav{
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 10em;
+  overflow: hidden;
+}
+
+/*********************************************
+ * CORNER SOURCE LINK
+ *********************************************/
+nav a {
+  font-weight: bold;
+  display: block;
+  background: var(--corner);
+  padding: 3em 10em 1ex;
+  color: var(--bg);
+  transform: translateX(50%) rotate(45deg) scale(0.75);
+  transform-origin: top center;
+  text-decoration: none;
+  max-width: 20px;
+}
+
+/*********************************************
+ * THEME SWITCH CHECKBOX
+ *********************************************/
+ .theme-selector{
+  margin-left: -200px;
+  margin-top: -5px;
+ }
+
+#theme-switch {
+  display: none;
+}
+
+label[for="theme-switch"] {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  position: relative;
+}
+
+label[for="theme-switch"]:after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.2s;
+}
+
+#theme-switch:checked+label[for="theme-switch"] {
+  background-color: #00bcd4;
+}
+
+#theme-switch:checked+label[for="theme-switch"]:after {
+  left: 32px;
+}
+
+
 
 main {
   max-width: 70em;
@@ -87,7 +168,7 @@ section {
  Adapted from - https://uiverse.io/Satwinder04/pink-bat-77
  *********************************************/
 
-#up-number-input{
+#up-number-input {
   text-align: center;
 }
 
@@ -116,11 +197,11 @@ section {
   pointer-events: none;
 }
 
-.input-container input[type="text"]:focus ~ .label,
-.input-container input[type="text"]:valid ~ .label {
+.input-container input[type="text"]:focus~.label,
+.input-container input[type="text"]:valid~.label {
   top: -20px;
   font-size: 16px;
-  color: #333;
+  color:  var(--hibg);;
 }
 
 .input-container .underline {
@@ -129,13 +210,14 @@ section {
   left: 0;
   height: 2px;
   width: 100%;
-  background-color: #333;
+ /* background-color: #333;*/
+ background-color: var(--hibg);
   transform: scaleX(0);
   transition: all 0.3s ease;
 }
 
-.input-container input[type="text"]:focus ~ .underline,
-.input-container input[type="text"]:valid ~ .underline {
+.input-container input[type="text"]:focus~.underline,
+.input-container input[type="text"]:valid~.underline {
   transform: scaleX(1);
 }
 
@@ -163,13 +245,14 @@ section {
   flex-direction: row;
   width: 100%;
   margin-bottom: .5rem;
+  padding: 5px;
 }
 
 .module>* {
   flex-grow: 0.33;
 }
 
-section input[type="number"]{
+section input[type="number"] {
   text-align: center;
   justify-content: center;
   width: 1px;
@@ -187,7 +270,7 @@ input[type="number"]:disabled {
   color: gray;
 }
 
-.module output{
+.module output {
   text-align: center;
   justify-content: center;
   width: 1px;
@@ -232,7 +315,8 @@ input::-webkit-inner-spin-button {
 
 #finalClassification,
 #gpa,
-#rules span {
+#rules span,
+p a {
   color: var(--hibg);
   font-weight: bold;
 }
@@ -248,8 +332,8 @@ input::-webkit-inner-spin-button {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  width: flex; 
-  height: flex; 
+  width: flex;
+  height: flex;
   border: none;
   cursor: pointer;
 }
@@ -258,7 +342,7 @@ input::-webkit-inner-spin-button {
   background-image: url("./img/lock-icon.png");
 }
 
-#ClearButtonDiv{
+#ClearButtonDiv {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -280,34 +364,34 @@ input::-webkit-inner-spin-button {
   transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
   touch-action: manipulation;
   vertical-align: middle;
- }
- 
- #ClearButton:hover {
+}
+
+#ClearButton:hover {
   background-color: #F3F4F6;
   transition-duration: 0.1s;
- }
- 
- #ClearButton:disabled {
+}
+
+#ClearButton:disabled {
   background-color: #FAFBFC;
   border-color: rgba(27, 31, 35, 0.15);
   color: #959DA5;
   cursor: default;
- }
- 
- #ClearButton:active {
+}
+
+#ClearButton:active {
   background-color: #EDEFF2;
   box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
- }
- 
- #ClearButton:focus {
+}
+
+#ClearButton:focus {
   outline: 1px transparent;
- }
+}
 
 /*********************************************
  * SHARE INDICATION
  *********************************************/
 
- #copyzone {
+#copyzone {
   display: flex;
 }
 
@@ -340,67 +424,8 @@ input::-webkit-inner-spin-button {
 }
 
 
-/*********************************************
- * CORNER SOURCE LINK
- *********************************************/
 
-#source {
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 10em;
-  overflow: hidden;
-}
 
-#source a {
-  font-weight: bold;
-  display: block;
-  background: var(--corner);
-  padding: 3em 10em 1ex;
-  color: var(--bg);
-  transform: translateX(50%) rotate(45deg) scale(0.75);
-  transform-origin: top center;
-  text-decoration: none;
-}
-
-/*********************************************
- * THEME SWITCH CHECKBOX
- *********************************************/
-
- #theme-switch {
-  display: none;
-}
-
-label[for="theme-switch"] {
-  display: inline-block;
-  width: 60px;
-  height: 30px;
-  background-color: #ccc;
-  border-radius: 15px;
-  position: relative;
-}
-
-label[for="theme-switch"]:after {
-  content: "";
-  display: block;
-  width: 26px;
-  height: 26px;
-  border-radius: 13px;
-  background-color: white;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: all 0.2s;
-}
-
-#theme-switch:checked + label[for="theme-switch"] {
-  background-color: #333;
-}
-
-#theme-switch:checked + label[for="theme-switch"]:after {
-  left: 32px;
-}
 
 /*********************************************
  * RULE HIGHLIGHTING
@@ -410,6 +435,7 @@ label[for="theme-switch"]:after {
 .highlight {
   transition: var(--trans);
   background: var(--highlight);
+  cursor: pointer;
 }
 
 [data-highlight] {
@@ -433,7 +459,7 @@ dd {
   transition: var(--trans);
 }
 
-#rule-explanation{
+#rule-explanation {
   width: 100%;
 }
 
@@ -446,3 +472,4 @@ dd {
 #rule-explanation a:link {
   color: #3366BB;
 }
+

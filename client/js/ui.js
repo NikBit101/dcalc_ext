@@ -2,6 +2,9 @@ import * as rules from './rules.js';
 import * as validity from './validity.js';
 import getStudentData from './student-request.js';
 
+
+
+
 function init() {
   const query = parseQueryParams();
 
@@ -83,33 +86,25 @@ function init() {
   toggleTheme();
 }
 
+// Function of when the user wants to use dark mode.
 async function toggleTheme() {
-  const toggler = document.querySelector('#theme-switch'),
-        root = document.documentElement,
-        currentTheme = localStorage.getItem('theme') || 'dark';
-
-  if (currentTheme === 'light') {
-    toggler.removeAttribute('checked');
-  } else {
-    toggler.checked = true;
-  }
-
-  root.setAttribute('data-theme', currentTheme);
-
+  const toggler = document.querySelector('#theme-switch');
   toggler.addEventListener('change', handleToggle, false);
 
+  //If the button is clicked adds the css class dark mode to the body
   function handleToggle(e) {
     if (this.checked) {
-      root.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-      console.log('Theme has been changed to: dark');
-    } else {
-      root.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
-      console.log('Theme has been changed to: light');
-    }
+      document.body.classList.toggle("dark-mode");
+       var tag = document.getElementById("up-input");
+       tag.style.color= "#FFF";
+      document.input.classList.toggle("dm-input");
 
-    console.log(`Current theme is: ${localStorage.getItem('theme')}`);
+      //If the button is clicked it removes the css class dark mode to the body and will go to the default
+    } else {
+      document.body.classList.remove('dark-mode');
+      var tag = document.getElementById("up-input");
+       tag.style.color= "#2d3848";
+    }
   }
 }
 
