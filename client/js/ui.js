@@ -155,9 +155,6 @@ async function loadModules() {
     const response = await fetch('modules.csv');
     const data = await response.text();
     const modules = data.split('\r\n');
-    const modulesFinalYear = [];
-    const modulesSecondYear = [];
-    debugger
     for(const row of modules){
   
       const [name,year] = row.split(',');

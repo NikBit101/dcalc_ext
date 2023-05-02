@@ -1,3 +1,5 @@
+import getPrediction from "./gradecalc.js";
+
 function getModules(student, id, label) {
   // student does NOT exist, display warning message and cancel request
   if (!student.studentModules) {
@@ -38,8 +40,9 @@ function getModules(student, id, label) {
         moduleMarksInput.value = modMarks.marks;
       }
     });
+    getPrediction(LEVEL_5);
     return LEVEL_5;
-
+    
   } 
 
   const is_LVL6 =
