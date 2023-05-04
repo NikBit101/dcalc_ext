@@ -8,12 +8,17 @@
   --bgdark: #2d3848;
   --header:  #e1e1e1;
   --fg: #000;
+<<<<<<< HEAD
 
   /*
   Old color for rules and that
   --hibg: #1f9dcf;*/
   --hibg: #0687bb;
   --highlight: #99CCFF;
+=======
+  --hibg: #621360;
+  --highlight: #d0c2d0;
+>>>>>>> 091067b998d59d5aac4eec3d1416188c31785788
   --border: #888;
   --border-disabled: #aaa;
   --corner: #621360;
@@ -44,6 +49,7 @@ html{
   overflow-x: hidden;
 }
 
+<<<<<<< HEAD
 body {
   margin: 0 auto;
   max-width: 100%;
@@ -52,6 +58,19 @@ body {
   color: var(--fg);
   transition: background-color 0.5s ease;
 }
+=======
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #333;
+    --fg: #AAA;
+    --hibg: #621360;
+    --highlight: #000;
+    --border: #888;
+    --border-disabled: #444;
+    --link: #996;
+    --corner: #996;
+  }
+>>>>>>> 091067b998d59d5aac4eec3d1416188c31785788
 
 /* Body when the user uses dark Mode.   */
 .dark-mode {
@@ -172,13 +191,8 @@ section {
   text-align: center;
 }
 
-.input-container {
-  position: relative;
-  margin: 50px auto;
-  width: 200px;
-}
-
 .input-container input[type="text"] {
+<<<<<<< HEAD
   font-size: 20px;
   width: 100%;
   border: none;
@@ -219,8 +233,16 @@ section {
 .input-container input[type="text"]:focus~.underline,
 .input-container input[type="text"]:valid~.underline {
   transform: scaleX(1);
+=======
+  font-size: 1.15em;
+  text-align: center;
+  justify-content: center;
+  width: 120px;
+  padding: 0.5em 0.7em;
+  border: 1px solid #888;
+  font-family: "Calibri", sans-serif;
+>>>>>>> 091067b998d59d5aac4eec3d1416188c31785788
 }
-
 
 #display-text {
   font-weight: bold;
@@ -248,23 +270,103 @@ section {
   padding: 5px;
 }
 
-.module>* {
+/* .module>* {
   flex-grow: 0.33;
-}
+} */
 
 section input[type="number"] {
   text-align: center;
   justify-content: center;
-  width: 1px;
+  width: 50px;
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #888;
+  margin-left: 5px;
+  margin-right: 5px;
+  right: 0;
 }
 
-section .range-input {
-  position: relative;
-  width: 100%;
-  margin: 0;
+/*********************************************
+ * RANGE SLIDERS STYLING
+ *********************************************/
+
+input[type=range] {
+  height: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 10px 0;
+  width: 90%;
+  padding-bottom: 8px;
 }
+
+input[type=range]:disabled::-webkit-slider-runnable-track,
+input[type=range]:disabled::-webkit-slider-thumb {
+  background: gray;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  /* animate: 0.2s; */
+  background: #AC51B5;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  border: 0px solid #000000;
+  height: 17px;
+  width: 17px;
+  border-radius: 50px;
+  background: #65001C;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5.5px;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  /* animate: 0.2s; */
+  background: #AC51B5;
+  border-radius: 50px;
+}
+input[type=range]::-moz-range-thumb {
+  height: 17px;
+  width: 17px;
+  border-radius: 50px;
+  background: #65001C;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  /* animate: 0.2s; */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #AC51B5;
+  border-radius: 100px;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #AC51B5;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  height: 17px;
+  width: 17px;
+  background: #65001C;
+  cursor: pointer;
+}
+
+
+/*********************************************
+ * INPUT STYLING
+ *********************************************/
+
 
 input[type="number"]:disabled {
   color: gray;
@@ -286,9 +388,13 @@ input {
   background: var(--bg);
   color: var(--fg);
   padding: 0.5ex 1ex;
-  border: var(--border) solid 1px;
   font-family: "Calibri", sans-serif;
   font-size: 1rem;
+}
+
+input[type='text']{
+  border: var(--border) solid 1px;
+  width:100%;
 }
 
 input[disabled] {
@@ -321,12 +427,22 @@ p a {
   font-weight: bold;
 }
 
-#fyEntryCheck {
+#filterSection{
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+#filterSection input[type="checkbox"] {
   display: block;
   margin: 0 auto;
   transform: scale(2);
 }
 
+<<<<<<< HEAD
 .lock-button {
   background-image: url("./img/unlock-icon.png");
   background-repeat: no-repeat;
@@ -336,19 +452,50 @@ p a {
   height: flex;
   border: none;
   cursor: pointer;
+=======
+/*********************************************
+ * LOCKING BUTTONS
+ *********************************************/
+
+ .inputheader {
+  display: flex;
+  justify-content: space-between;
+>>>>>>> 091067b998d59d5aac4eec3d1416188c31785788
 }
 
-.lock-button.disabled {
-  background-image: url("./img/lock-icon.png");
+.inputheader h2 {
+  justify-self: flex-start;
 }
 
+<<<<<<< HEAD
 #ClearButtonDiv {
+=======
+.inputheader h3 {
+  justify-self: flex-end;
+}
+
+ input[type="checkbox"] {
+  vertical-align: middle;
+  transform: scale(2.7);
+  margin-left: 10px;
+  accent-color: #621360;
+ }
+
+/* section input[type='checkbox'].disabled {
+  margin: 1px;
+} */
+
+
+/*********************************************
+* BUTTON STYLING,
+adapted from: https://uiverse.io/e-coders/nervous-chipmunk-49
+*********************************************/
+#ClearButtonDiv{
+>>>>>>> 091067b998d59d5aac4eec3d1416188c31785788
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-/* following CSS is adapted from: https://uiverse.io/e-coders/nervous-chipmunk-49 */
 
 #ClearButton,
 #copy {
@@ -387,6 +534,7 @@ p a {
   outline: 1px transparent;
 }
 
+ 
 /*********************************************
  * SHARE INDICATION
  *********************************************/

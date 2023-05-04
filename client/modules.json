@@ -1,0 +1,290 @@
+[
+    {
+       "module_name":"3D Computer Graphics and Animation",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Advanced Database Concepts",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Advanced Networks",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Advanced Systems Analysis",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Application Engineering",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Application Programming",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Applied Machine Learning and Data Mining",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Architecture and Operating Systems",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Basics of The Business Environment",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Big Data",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Business & Employment Law",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Business Analytics",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Business Information Systems Security",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Business Research",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Business Systems Analysis",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Business Systems Analysis and Design",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Computing in Context",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Computing Undergraduate Ambassador",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Core Computing Concepts",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Core Computing Concepts for Cyber Security and Forensic Computing",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Cyber Security and Forensic Computing",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Cyberlaw Governance and Human Rights",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Data Analytics and Visualisation",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Data Structures and Algorithms",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Database Principles",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Database Systems Development",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Digital Enterprise and Innovation 1",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Digital Enterprise and Innovation 2",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Discrete Mathematics and Functional Programming",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Distributed Systems and Security",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Educational Computing",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Engineering Science",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Enterprise Web Architectures",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Ethical Hacking",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Exchange Study Abroad",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Final Year Study Project",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Forensics Fundamentals",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Forensics Investigations",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Fuzzy Systems and Networks",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Graphics and Computer Vision",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Hacking for Defence",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Information Systems and Project Management",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Information Systems Management",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Interaction Design",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Internet of Things",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Introduction To Computer Essentials",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Learning From Experience",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Malware Forensics",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Network Servers and Services",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Networks",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Neural Networks and Genetic Algorithms",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Open Innovations in Data Science",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Operating Systems and Internetworking",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Practical Data Analytics and Mining",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Practical Data Science",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Professional and Academic Research Development",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Programming",
+       "module_year":"final_year"
+    },
+    {
+       "module_name":"Programming Applications and Programming Languages",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Project Management",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Robotics",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Scalable Software Engineering",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Security and Cryptography",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Security Management",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Social Computing for Business",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Software Engineering Theory and Practice",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"System Administration and Internetworking",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Theoretical Computer Science",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Usability Engineering",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"User Experience Design",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Virtualisation and Cloud Computing",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Vulnerability Discovery and Exploitation",
+       "module_year":"second_year"
+    },
+    {
+       "module_name":"Web Programming",
+       "module_year":"final_year"
+    }
+ ]

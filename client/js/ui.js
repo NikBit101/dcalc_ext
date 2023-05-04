@@ -29,7 +29,8 @@ function init() {
   const rangeSliders = document.querySelectorAll('input[type="range"]');
   const numberInputs = document.querySelectorAll('input[type="number"]');
   const lockButtons = document.querySelectorAll('.lock-button');
-  
+  const clearButton = document.querySelector('#ClearButton');
+
   for (let i = 0; i < rangeSliders.length; i++) {
     rangeSliders[i].addEventListener('input', () => {
       if (!lockButtons[i].classList.contains('disabled')) {
@@ -49,8 +50,42 @@ function init() {
     });
   }
 
+  // upon pressing the "clear" button
+  clearButton.addEventListener('click', () => {
+    const modules = document.querySelectorAll('input');
+    modules.forEach(module => {
+      if (module.type === 'checkbox') {
+        module.checked = false; // uncheck any checkboxes
+      } else {
+        module.value = ""; // clear values
+      }
+
+      module.disabled = false; // reenables any inputs that were disabled - 1
+    });
+
+    numberInputs.forEach(number => {
+      number.value = 0;
+      number.disabled = false; // 2
+    });
+
+    rangeSliders.forEach(slider => {
+      slider.value = 0;
+      slider.disabled = false; // 3
+    });
+  });
+
+
   /// END of button and slider section
 
+  const fyEntryCheck = document.getElementById("fyEntryCheck");
+  fyEntryCheck.addEventListener('change', () => {
+    const sectionL5 = document.getElementById("l5");
+    const inputsL5 = sectionL5.querySelectorAll('input');
+    for (const input of inputsL5) {
+      input.disabled = fyEntryCheck.checked;
+      input.classList.toggle('disabled', fyEntryCheck.checked);
+    }
+  });
 
   const allInputs = document.querySelectorAll('.module input');
   for (const input of allInputs) {
@@ -108,20 +143,39 @@ async function toggleTheme() {
   }
 }
 
+/// displaying the modules in their respective year text input field
+
 async function loadModules() {
   try {
-    const response = await fetch('modules.txt');
-    const modules = (await response.text()).split('\n');
-    const elems = modules.map(module => {
-      const e = document.createElement('option');
-      e.value = module;
-      return e;
-    });
-    document.querySelector('#module-list').append(...elems);
+    const response = await fetch('modules.csv');
+    const data = await response.text();
+    const modules = data.split('\r\n');
+    const modulesFinalYear = [];
+    const modulesSecondYear = [];
+    debugger
+    for(const row of modules){
+  
+      const [name,year] = row.split(',');
+      if(year === "final_year"){
+        const e = document.createElement('option');
+        e.value = name;
+        document.querySelector('#module-list-l6').append(e);
+      } else {
+        const e = document.createElement('option');
+        e.value = name;
+        document.querySelector('#module-list').append(e);
+      }
+
+    };
+
   } catch (e) {
     console.error('Failed to load list of modules, using defaults', e);
+  } finally {
+    console.log('Finished loading modules.');
   }
 }
+
+// END of module list func
 
 function createShareLink() {
   let link = window.location.origin + window.location.pathname + '?share';
@@ -167,22 +221,22 @@ async function recalculate() {
   const marks = await gatherMarksFromPage();
 
   if (!marks) {
-    document.querySelector('#ruleA').textContent = 'n/a';
-    document.querySelector('#ruleB').textContent = 'n/a';
-    document.querySelector('#ruleC').textContent = 'n/a';
+    document.querySelector('#ruleA').textContent = 'N/A';
+    document.querySelector('#ruleB').textContent = 'N/A';
+    document.querySelector('#ruleC').textContent = 'N/A';
     document.querySelector('#finalClassification').textContent = 'not enough data';
-    document.querySelector('#gpa').textContent = 'n/a';
+    document.querySelector('#gpa').textContent = 'N/A';
     return;
   }
 
-    if (isAnyMarkUnder40(marks)) {
-      document.querySelector('#ruleA').textContent = 'n/a';
-      document.querySelector('#ruleB').textContent = 'n/a';
-      document.querySelector('#ruleC').textContent = 'n/a';
-      document.querySelector('#finalClassification').textContent = 'failed a module, no degree classification';
-      document.querySelector('#gpa').textContent = 'n/a';
-      return;
-    }
+  if (isAnyMarkUnder40(marks)) {
+    document.querySelector('#ruleA').textContent = 'N/A';
+    document.querySelector('#ruleB').textContent = 'N/A';
+    document.querySelector('#ruleC').textContent = 'N/A';
+    document.querySelector('#finalClassification').textContent = 'Failed a module, no degree classification';
+    document.querySelector('#gpa').textContent = 'N/A';
+    return;
+  }
 
   rules.prepareMarks(marks);
 
