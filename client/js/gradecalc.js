@@ -6,6 +6,19 @@ export default function getPrediction(level5Grades) {
     { name: "mod4", marks: 0 },
   ];
 
+  const level5GradesCount = [ 
+    { name: "between70", count: 0 },
+    { name: "between60", count: 0 },
+    { name: "between50", count: 0 },
+    { name: "between40", count: 0 },
+  ];
+  
+  // If we count how many grades are between certain bands, then we can average grades in the bands and get more accurate values for predicting
+  // Function to count how many grades from level5Grades are between certain bands.
+  // Calculate averages of grades in specific boundaries.
+  // Add a percentage increase to each of the averages depending on which band they are in.
+
+
   const marks = level5Grades;
   const passedMarks = [];
 
