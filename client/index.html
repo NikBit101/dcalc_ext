@@ -25,8 +25,20 @@
   <section id="results">
     <div>
       <h2>Indication:</h2>
-      <p id="finalClassification">not enough data</span>.</p>
-      <p>This is the best result from Rules A, B and C.</p>
+      <div id="indicationDiv">
+        <p id="finalClassification">not enough data</span>.</p>
+        <p>This is the best result from Rules A, B and C.</p>
+      </div>
+      <div id="finalGradeDiv">
+        <p for="final-grade-input" id="finalClassification">Choose final grade</p>
+        <select name="" id="final-grade-input">
+          <option value="First-class honours">First Class</option>
+          <option value="Second-class honours (upper division)">Second Class, Upper Division</option>
+          <option value="Second-class honours (lower division)">Second Class, Lower Division</option>
+          <option value="Third-class honours">Third Class</option>
+        </select>
+        <button type="button" id="targetGradeBtn">Go</button>
+      </div>
     </div>
     <div id=rules>
       <h2>Rules:</h2>
@@ -46,8 +58,8 @@
     <input id="fyEntryCheck" type="checkbox">
     </div>
     <div>
-    <p>Example Option Checkbox:</p>
-    <input id="" type="checkbox">
+    <p>Calculate Target Grade:</p>
+    <input id="targetGradeCheck" type="checkbox">
     </div>
     <div>
     <p>Example Option Checkbox:</p>
@@ -57,6 +69,10 @@
 
   <section id="showingShared" style="display: none">
     <h2>Showing shared marks. <a href="./">Edit my marks.</a></h2>
+  </section>
+
+  <section id="filterSection">
+
   </section>
 
   <section id="l5">
@@ -153,7 +169,7 @@
       <input class="range-input" id="fyp" type="range" min="0" max="100" value="0">
     </ul>
     <div id="ClearButtonDiv">
-      <button id="ClearButton">Clear</button>
+      <button id="ClearButtonUnlocked">Clear Unlocked Modules</button>
     </div>
   </section>
 

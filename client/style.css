@@ -336,8 +336,8 @@ adapted from: https://uiverse.io/e-coders/nervous-chipmunk-49
   align-items: center;
 }
 
-#ClearButton,
-#copy {
+#copy,
+#ClearButtonUnlocked {
   background-color: #FAFBFC;
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 6px;
@@ -351,25 +351,28 @@ adapted from: https://uiverse.io/e-coders/nervous-chipmunk-49
   touch-action: manipulation;
   vertical-align: middle;
  }
- 
- #ClearButton:hover {
+
+ #copy,
+ #ClearButtonUnlocked:hover {
   background-color: #F3F4F6;
   transition-duration: 0.1s;
  }
  
- #ClearButton:disabled {
+ #ClearButtonUnlocked:disabled {
   background-color: #FAFBFC;
   border-color: rgba(27, 31, 35, 0.15);
   color: #959DA5;
   cursor: default;
  }
  
- #ClearButton:active {
+ #copy,
+ #ClearButtonUnlocked:active {
   background-color: #EDEFF2;
   box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
  }
  
- #ClearButton:focus {
+ #copy,
+ #ClearButtonUnlocked:focus {
   outline: 1px transparent;
  }
 

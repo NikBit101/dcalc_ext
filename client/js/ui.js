@@ -26,13 +26,16 @@ function init() {
   const rangeSliders = document.querySelectorAll('input[type="range"]');
   const numberInputs = document.querySelectorAll('input[type="number"]');
   const lockButtons = document.querySelectorAll('.lock-button');
-  const clearButton = document.querySelector('#ClearButton');
+  const clearUnlockedButton = document.querySelector('#ClearButtonUnlocked');
 
   for (let i = 0; i < rangeSliders.length; i++) {
     rangeSliders[i].addEventListener('input', () => {
       if (!lockButtons[i].classList.contains('disabled')) {
         numberInputs[i].value = rangeSliders[i].value;
       }
+
+      document.querySelector('#targetGradeBtn').disabled = false ? true : false;
+
       rangeSliders[i].value = numberInputs[i].value;
     });
     
@@ -47,32 +50,36 @@ function init() {
     });
   }
 
-  // upon pressing the "clear" button
-  clearButton.addEventListener('click', () => {
-    const modules = document.querySelectorAll('input');
-    modules.forEach(module => {
-      if (module.type === 'checkbox') {
-        module.checked = false; // uncheck any checkboxes
-      } else {
-        module.value = ""; // clear values
-      }
-
-      module.disabled = false; // reenables any inputs that were disabled - 1
-    });
-
-    numberInputs.forEach(number => {
-      number.value = 0;
-      number.disabled = false; // 2
-    });
-
-    rangeSliders.forEach(slider => {
-      slider.value = 0;
-      slider.disabled = false; // 3
-    });
-  });
+  clearUnlockedButton.addEventListener('click', () => {
+    const allInputs = Object.values(document.querySelectorAll('#l5 input, #l6 input'));
+    allInputs.filter(input => !input.hasAttribute('disabled') && input.type != 'text').forEach(eachInput => {
+      eachInput.value = 0
+    })
+    document.querySelector('#targetGradeBtn').disabled = false ? true : false;
+  })
 
 
   /// END of button and slider section
+
+  const targetGradeBtn = document.getElementById("targetGradeBtn");
+  targetGradeBtn.addEventListener('click', () => {
+    calculateMarksByGrade()
+  })
+  
+
+  const targetGradeCheck = document.getElementById("targetGradeCheck");
+  const indicationDiv = document.getElementById("indicationDiv")
+  const finalGradeDiv = document.getElementById("finalGradeDiv");
+  finalGradeDiv.style.display = 'none'
+  targetGradeCheck.addEventListener('change', () => {
+    if(targetGradeCheck.checked){
+      finalGradeDiv.style.display = 'block'
+      indicationDiv.style.display = 'none'
+    } else {
+      finalGradeDiv.style.display = 'none'
+      indicationDiv.style.display = 'block'
+    }
+  })
 
   const fyEntryCheck = document.getElementById("fyEntryCheck");
   fyEntryCheck.addEventListener('change', () => {
@@ -155,6 +162,9 @@ async function loadModules() {
     const response = await fetch('modules.csv');
     const data = await response.text();
     const modules = data.split('\r\n');
+    const modulesFinalYear = [];
+    const modulesSecondYear = [];
+    // debugger
     for(const row of modules){
   
       const [name,year] = row.split(',');
@@ -359,6 +369,170 @@ function highlight(trigger, showHighlight) {
   for (const target of targets) {
     target.classList.toggle('highlight', showHighlight);
   }
+}
+
+async function calculateMarksByGrade() {
+
+  const retval = {
+    l5: [],
+    l6: [],
+    fyp: null,
+  };
+
+  /* for testing
+  
+    let retval = {
+    "l5": [
+        {"disabled": true,
+         "mark": 68},
+        {"disabled": true,
+         "mark": 68},
+        {"disabled": true,
+         "mark": 67},
+        {"disabled": true,
+         "mark": 70},
+        {"disabled": true,
+         "mark": 72},
+        {"disabled": true,
+         "mark": 67}],
+    "l6": [
+        {"disabled": true,
+         "mark": 65},
+        {"disabled": true,
+         "mark": 69},
+        {"disabled": false,
+         "mark": 0},
+        {"disabled": false,
+         "mark": 0}],
+    "fyp": {"disabled": false,
+            "mark": 0}
+          }
+
+  }
+  */
+  
+  const finalGradeSelect = document.getElementById('final-grade-input')
+
+  const l5InputsRange = document.querySelectorAll('#l5 input[type="range"]');
+  for (const input of l5InputsRange) {
+    retval.l5.push({
+      disabled: input.hasAttribute('disabled'),
+      mark: Number(input.value)
+    });
+  }
+
+  const l6InputsRange = document.querySelectorAll('#l6 input:not(#fyp)[type="range"]');
+  for (const input of l6InputsRange) {
+    retval.l6.push({
+      disabled: input.hasAttribute('disabled'),
+      mark: Number(input.value)
+    });
+  }
+  
+  const fypInputRange = document.querySelector('input[type="range"]#fyp');
+  retval.fyp = {
+    disabled: fypInputRange.hasAttribute('disabled'),
+    mark: Number(fypInputRange.value)
+  };
+
+  const l5InputsNumber = document.querySelectorAll('#l5 input[type="number"]');
+  const l6InputsNumber = document.querySelectorAll('#l6 input:not(#fyp)[type="number"]');
+  const fypInputNumber = document.querySelector('input[type="number"]#fyp')
+
+  let count = 0 // To control the loop if anything goes wrong
+  const minMark = 40
+  let finalClassification = undefined // undefined
+  while (finalClassification != finalGradeSelect.value) {
+    const marks = {
+      l5: [],
+      l6: [],
+      fyp: null,
+    }
+
+    retval.l5.forEach(obj => {
+      if(!obj.disabled && obj.mark === 0) obj.mark = minMark
+      else if(!obj.disabled){
+        obj.mark += 0.4
+        obj.mark = Math.round(obj.mark)
+      }
+    })
+    retval.l6.forEach(obj => {
+      if(!obj.disabled && obj.mark === 0) obj.mark = minMark
+      else if(!obj.disabled){
+        obj.mark += 0.6
+        obj.mark = Math.round(obj.mark)
+      }
+    })
+    if(!retval.fyp.disabled && retval.fyp.mark === 0){
+      retval.fyp.mark = minMark
+    }
+    else if (!retval.fyp.disabled && retval.fyp.mark != 0){
+      retval.fyp.mark += 0.6
+      retval.fyp.mark = Math.round(retval.fyp.mark)
+
+    }
+
+    retval.l5.forEach(item => {
+      marks.l5.push(item.mark)
+    })
+    retval.l6.forEach(item => {
+      marks.l6.push(item.mark)
+    })
+    marks.fyp = (retval.fyp.mark)
+
+    rules.prepareMarks(marks);
+    const a = rules.ruleA(marks);
+    const b = rules.ruleB(marks);
+    const c = rules.ruleC(marks);
+    const finalMark = Math.max(a, b, c);
+    finalClassification = rules.toClassification(finalMark);
+    
+    const allMarks = marks.l5.concat(marks.prepared.l6)
+    for (const i of allMarks){
+      if (i > 100) return;
+    }
+
+    if(count === 100) break // To prevent infinite loop
+    count++
+  }
+  console.log(finalClassification);
+  l5InputsNumber.forEach((input, index) => {
+    const currItem = retval.l5[index]
+    if(!input.hasAttribute('disabled')){
+      if(!currItem.disabled) {
+        input.value = currItem.mark
+      }
+    }
+  })
+  l5InputsRange.forEach((input, index) => {
+    const currItem = retval.l5[index]
+    if(!input.hasAttribute('disabled')){
+      if(!currItem.disabled) {
+        input.value = currItem.mark
+      }
+    }
+  })
+  l6InputsRange.forEach((input, index) => {
+    const currItem = retval.l6[index]
+    if(!input.hasAttribute('disabled')){
+      if(!currItem.disabled) {
+        input.value = currItem.mark
+      }
+    }
+  })
+  l6InputsNumber.forEach((input, index) => {
+    const currItem = retval.l6[index]
+    if(!input.hasAttribute('disabled')){
+      if(!currItem.disabled) {
+        input.value = currItem.mark
+      }
+    }
+  })
+  fypInputNumber.value = retval.fyp.mark
+  fypInputRange.value = retval.fyp.mark
+
+  recalculate()
+  document.querySelector('#targetGradeBtn').disabled = true;
 }
 
 
