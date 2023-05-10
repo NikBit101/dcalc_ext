@@ -2,7 +2,7 @@
  * NARROW LAYOUT (DEFAULT)
  *********************************************/
 
-:root {
+ :root {
   --numsize: 120%;
   --bg: #FFF;
   --bgdark: #2b2c2c;
@@ -22,7 +22,7 @@
  * WIDE LAYOUT
  *********************************************/
 
-@media screen and (min-width: 70rem) {
+ @media screen and (min-width: 70rem) {
   :root {
     --header-align: center;
     --wide-direction: row;
@@ -58,10 +58,7 @@
  * GENERAL LAYOUT
  *********************************************/
 
-html {
-  max-width: 100%;
-  overflow-x: hidden;
-}
+
 
 body {
   margin: 0 auto;
@@ -71,6 +68,8 @@ body {
   color: var(--fg);
   transition: background-color 0.5s ease;
 }
+
+
 
 /* Body when the user uses dark Mode.   */
 .dark-mode {
@@ -98,7 +97,6 @@ header {
 section {
   display: inline-block;
   width: 30rem;
-  border-radius: 25px;
 }
 
 /*********************************************
@@ -106,28 +104,23 @@ section {
  Adapted from - https://uiverse.io/Satwinder04/pink-bat-77
  *********************************************/
 
-#up-number-input {
-  text-align: center;
+h4{
+ text-align: center;
 }
-
 .input-container input[type="text"] {
   font-size: 1.15em;
-  text-align: center;
-  justify-content: center;
   width: 120px;
   padding: 0.5em 0.7em;
   border: 1px solid #888;
   font-family: "Calibri", sans-serif;
   border-radius: 25px;
+  text-align: center;
+  display: inline;
+  display: block;
+  margin: 0 auto;
 }
-
 #display-text {
   font-weight: bold;
-}
-
-input[type="text"] {
-  border-radius: 25px;
-  padding: 10px;
 }
 
 /*********************************************
@@ -155,7 +148,7 @@ input[type="text"] {
   flex-grow: 0.33;
 } */
 
-section input[type="number"] {
+section input[type="number"]{
   text-align: center;
   justify-content: center;
   width: 50px;
@@ -167,14 +160,12 @@ section input[type="number"] {
   border-radius: 25px;
 }
 
-
-
 /*********************************************
  * RANGE SLIDERS STYLING
  *********************************************/
 
  /* Size of input  */
-input[type=range] {
+ input[type=range] {
   height: 10px;
   -webkit-appearance: none;
   appearance: none;
@@ -208,14 +199,17 @@ input[type=range]::-webkit-slider-thumb {
   box-shadow: -305px  5px 0 300px  #AC51B5;
 }
 
+
 /*********************************************
  * INPUT STYLING
  *********************************************/
+
+
 input[type="number"]:disabled {
   color: gray;
 }
 
-.module output {
+.module output{
   text-align: center;
   justify-content: center;
   width: 1px;
@@ -235,9 +229,9 @@ input {
   font-size: 1rem;
 }
 
-input[type='text'] {
+input[type='text']{
   border: var(--border) solid 1px;
-  width: 100%;
+  width:100%;
 }
 
 input[disabled] {
@@ -247,6 +241,7 @@ input[disabled] {
 input::selection {
   background: var(--hibg);
   color: white;
+  border-radius: 25px;
 }
 
 input[type='number'] {
@@ -269,7 +264,7 @@ input::-webkit-inner-spin-button {
   font-weight: bold;
 }
 
-#filterSection {
+#filterSection{
   display: inline-flex;
   flex-direction: row;
   justify-content: space-around;
@@ -288,7 +283,7 @@ input::-webkit-inner-spin-button {
  * LOCKING BUTTONS
  *********************************************/
 
-.inputheader {
+ .inputheader {
   display: flex;
   justify-content: space-between;
 }
@@ -301,12 +296,12 @@ input::-webkit-inner-spin-button {
   justify-self: flex-end;
 }
 
-input[type="checkbox"] {
+ input[type="checkbox"] {
   vertical-align: middle;
   transform: scale(2.7);
   margin-left: 10px;
   accent-color: #621360;
-}
+ }
 
 /* section input[type='checkbox'].disabled {
   margin: 1px;
@@ -317,7 +312,7 @@ input[type="checkbox"] {
 * BUTTON STYLING,
 adapted from: https://uiverse.io/e-coders/nervous-chipmunk-49
 *********************************************/
-#ClearButtonDiv {
+#ClearButtonDiv{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -337,38 +332,38 @@ adapted from: https://uiverse.io/e-coders/nervous-chipmunk-49
   transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
   touch-action: manipulation;
   vertical-align: middle;
-}
+ }
 
-#copy,
-#ClearButtonUnlocked:hover {
+ #copy,
+ #ClearButtonUnlocked:hover {
   background-color: #F3F4F6;
   transition-duration: 0.1s;
-}
-
-#ClearButtonUnlocked:disabled {
+ }
+ 
+ #ClearButtonUnlocked:disabled {
   background-color: #FAFBFC;
   border-color: rgba(27, 31, 35, 0.15);
   color: #959DA5;
   cursor: default;
-}
-
-#copy,
-#ClearButtonUnlocked:active {
+ }
+ 
+ #copy,
+ #ClearButtonUnlocked:active {
   background-color: #EDEFF2;
   box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
-}
-
-#copy,
-#ClearButtonUnlocked:focus {
+ }
+ 
+ #copy,
+ #ClearButtonUnlocked:focus {
   outline: 1px transparent;
-}
+ }
 
-
+ 
 /*********************************************
  * SHARE INDICATION
  *********************************************/
 
-#copyzone {
+ #copyzone {
   display: flex;
 }
 
@@ -429,7 +424,7 @@ adapted from: https://uiverse.io/e-coders/nervous-chipmunk-49
  * THEME SWITCH CHECKBOX
  *********************************************/
 
-#theme-switch {
+ #theme-switch {
   display: none;
 }
 
@@ -455,11 +450,11 @@ label[for="theme-switch"]:after {
   transition: all 0.2s;
 }
 
-#theme-switch:checked+label[for="theme-switch"] {
-  background-color: #333;
+#theme-switch:checked + label[for="theme-switch"] {
+  background-color: #707070;
 }
 
-#theme-switch:checked+label[for="theme-switch"]:after {
+#theme-switch:checked + label[for="theme-switch"]:after {
   left: 32px;
 }
 
@@ -494,7 +489,7 @@ dd {
   transition: var(--trans);
 }
 
-#rule-explanation {
+#rule-explanation{
   width: 100%;
 }
 

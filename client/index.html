@@ -1,4 +1,8 @@
 <!doctype html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portsmouth Degree Calculator</title>
 <link rel=stylesheet href="style.css">
 <link rel="manifest" href="manifest.json">
@@ -7,17 +11,18 @@
 <meta name="theme-color" content="#621360" />
 <link rel="apple-touch-icon" href="img/192.png" />
 <link rel="icon" href="img/192.png" />
+</head>
 
+<body>
 <header>
   <h1>Portsmouth Degree&nbsp;Calculator</h1>
 </header>
-
 <main>
 
-  <section id="up-number-input ">
+  <section id="up-number-input">
     <h4>Input your UP number to get your data:</h4>
     <div class="input-container">
-      <input type="text" id="up-input" placeholder="0UP123456" required="number" maxlength="15">
+      <input type="text" id="up-input" placeholder="UP1234567" required="number" maxlength="15">
     </div>
     <p id="display-text">&nbsp;</p>
   </section>
@@ -178,7 +183,7 @@
 
   <datalist id="module-list-l6">
   </datalist>
-  
+
   <section id="rule-explanation">
     <h2>Rule Definitions</h2>
     <p>Source: <a href="https://regulations.docstore.port.ac.uk/ExamRegs9BoardofExaminers.pdf">Examination & Assessment Regs: Boards of Examiners</a></p>
@@ -201,8 +206,6 @@
       Welcome to our webapp designed to make your academic journey a little easier. Our app is designed to help you calculate your final degree classification and GPA based on your module marks. You can set a target final degree classification, and it will calculate the minimum grades you need to achieve that goal based on the University's marking rules that are outlined above.
       <br /><br />
       By inputting your UP number, you can have your module grades automatically imported.
-      <br /><br />
-      The indication field shows the classification of the grade itself and if switched to Calculate Target Grade, then it will give you the option of what final predicted grade the student wants to archive.
       <br /><br />
       Modules are highlighted that need more attention to help you focus on improving your grades to achieve a target degree classification.
       <br /><br />
@@ -237,3 +240,6 @@
 
 <script src="js/service-worker-loader.js" type="module" target="blank_"></script>
 <script src="js/ui.js" type="module"></script>
+
+</body>
+</html>
