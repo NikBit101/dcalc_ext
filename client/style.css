@@ -82,13 +82,21 @@ body {
 
 
 main {
-  max-width: 70em;
+  max-width: 85em;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   flex-direction: var(--wide-direction);
   align-items: var(--wide-align);
+}
+
+#rule-explanation h2 {
+  margin-bottom: 2rem;
+}
+
+#rule-explanation p {
+  margin-bottom: 2rem;
 }
 
 header {
