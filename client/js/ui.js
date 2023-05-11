@@ -487,10 +487,10 @@ async function calculateMarksByGrade() {
     const finalMark = Math.max(a, b, c);
     finalClassification = rules.toClassification(finalMark);
     
-    const allMarks = marks.l5.concat(marks.prepared.l6)
-    for (const i of allMarks){
-      if (i > 100) return;
-    }
+    // const allMarks = marks.l5.concat(marks.prepared.l6)
+    // for (const i of allMarks){
+    //   if (i > 100) return;
+    // }
 
     if(count === 100) break // To prevent infinite loop
     count++
@@ -533,6 +533,72 @@ async function calculateMarksByGrade() {
 
   recalculate()
   document.querySelector('#targetGradeBtn').disabled = true;
+
+  const calculated = true // after calculating for the first time
+  const allMarks = {
+    all: [],
+    min: 0,
+    max: 0
+  }
+  if(calculated) {
+    const inputRanges = document.querySelectorAll('input[type="range"]')
+    for (const inputRange of inputRanges) {
+      const value = Number(inputRange.value);
+      allMarks.all.push(value);
+    }
+    allMarks.min = Math.min(...allMarks.all)
+    allMarks.max = Math.max(...allMarks.all)
+
+    // test output
+    console.log(allMarks);
+    
+    // attaching event listeners
+    inputRanges.forEach(input => {
+      if(!input.hasAttribute('disabled')) {
+        input.addEventListener('input', () => {
+          // calculate marks again
+          marks = {
+            l5: [],
+            l6: [],
+            fyp: 0
+          }
+          // if(!input.hasAttribute('disabled')){
+          //   if(allMarks.min < input.value && allMarks.max > input.value){
+          //     input.value++
+          //   }
+          // }
+
+          const l5InputsRange = document.querySelectorAll('#l5 input[type="range"]');
+          for (const input of l5InputsRange) {
+            marks.l5.push(input.value)
+          }
+
+          const l6InputsRange = document.querySelectorAll('#l6 input:not(#fyp)[type="range"]');
+          for (const input of l6InputsRange) {
+            marks.l6.push(input.value)
+          }
+          
+          const fypInputRange = document.querySelector('input[type="range"]#fyp');
+          marks.fyp.push(input.value)
+
+          rules.prepareMarks(marks);
+          const a = rules.ruleA(marks);
+          const b = rules.ruleB(marks);
+          const c = rules.ruleC(marks);
+          const finalMark = Math.max(a, b, c);
+          finalClassification = rules.toClassification(finalMark);
+
+          if(finalGradeSelect.value != finalClassification){
+            
+          }
+
+          console.log(input.value);
+        })
+        
+      }
+    })
+  }
+
 }
 
 
