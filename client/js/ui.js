@@ -368,6 +368,17 @@ function highlight(trigger, showHighlight) {
   }
 }
 
+function calculateGrade(marks) {
+  rules.prepareMarks(marks);
+  const a = rules.ruleA(marks);
+  const b = rules.ruleB(marks);
+  const c = rules.ruleC(marks);
+  const finalMark = Math.max(a, b, c);
+  const finalClassification = rules.toClassification(finalMark);
+
+  return {class: finalClassification, finalMark: finalMark}
+}
+
 async function calculateMarksByGrade() {
 
   const retval = {
@@ -484,10 +495,10 @@ async function calculateMarksByGrade() {
     const finalMark = Math.max(a, b, c);
     finalClassification = rules.toClassification(finalMark);
     
-    const allMarks = marks.l5.concat(marks.prepared.l6)
-    for (const i of allMarks){
-      if (i > 100) return;
-    }
+    // const allMarks = marks.l5.concat(marks.prepared.l6)
+    // for (const i of allMarks){
+    //   if (i > 100) return;
+    // }
 
     if(count === 100) break // To prevent infinite loop
     count++
@@ -530,6 +541,98 @@ async function calculateMarksByGrade() {
 
   recalculate()
   document.querySelector('#targetGradeBtn').disabled = true;
+
+  const calculated = true // after calculating for the first time
+  const allMarks = {
+    all: [],
+    min: 0,
+    max: 0
+  }
+  if(calculated) {
+    const inputRanges = document.querySelectorAll('input[type="range"]')
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+    for (const inputRange of inputRanges) {
+      const value = Number(inputRange.value);
+      allMarks.all.push(value);
+    }
+    allMarks.min = Math.min(...allMarks.all)
+    allMarks.max = Math.max(...allMarks.all)
+
+    // test output
+    console.log(allMarks);
+
+    // attaching event listeners to all sliders
+    inputRanges.forEach((input, index) => {
+      if(!input.hasAttribute('disabled')) {
+
+        input.addEventListener('input', async () => {
+
+          // Limiting the slider at passing mark 40
+          input.value = Math.max(input.value, allMarks.min)
+
+          // Updating the number input with the value of range slider
+          numberInputs[index].value = input.value
+
+          // flag the range slider (when changed)
+          // remove flag when reset to certain value
+          if(Number(input.value) === allMarks.max && input.classList.contains('flagged')) {
+            input.classList.remove('flagged')
+          } else {
+            input.classList.add('flagged')
+          }
+          // if(!input.hasAttribute('disabled')){
+          //   if(allMarks.min < input.value && allMarks.max > input.value){
+          //     input.value++
+          //   }
+          // }
+
+          // get all marks from the page
+          const marks = await gatherMarksFromPage()
+
+          // calculate the grade
+          const grade = calculateGrade(marks)
+
+          // console.log(grade);
+          if(finalGradeSelect.value != grade.class){
+            const values = []
+            inputRanges.forEach((eachOldInput, index) => {
+              if(eachOldInput.classList.contains('flagged') && Number(eachOldInput.value) < allMarks.max && Number(eachOldInput.value) >= allMarks.min){
+                values.push({index: index, value: Number(eachOldInput.value)})
+
+              }
+            })
+            console.log(values);
+            // Find the index of the smallest value
+            const smallestkey = values.find(({value}) => value === Math.min(...Object.values(values).map(obj => obj.value))).index;
+            // const smallestIndex = Object.keys(values).findIndex(key => values[key].value === Math.min(...Object.values(values).map(obj => obj.value)));
+
+            for(let i = 0; i <= inputRanges.length; i++){
+              if(i === smallestkey) {
+                let reached = false
+                let count = 0
+                while(!reached) {
+                  inputRanges[i].value = Number(inputRanges[i].value) + 1
+                  numberInputs[i].value = Number(numberInputs[i].value) + 1
+                  const newGrade = calculateGrade(marks).class
+                  if(newGrade === finalGradeSelect.value) reached = true
+                  if(count === 50) reached = true // prevent infinite loop
+                  count++
+                }
+              }
+            }
+
+            // reculate
+            recalculate()
+            
+            // console.log(`not ${finalGradeSelect.value} anymore and now ${grade.class}, therefore, add number`);
+          }
+
+        })
+        
+      }
+    })
+  }
+
 }
 
 
